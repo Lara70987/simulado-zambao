@@ -51,6 +51,19 @@ public class CursoServiceTests {
     }
 
     @Test
+    public void test_shouldReturnAllNonDeletedWhenListarWithBlankNome() {
+        List<Curso> cursos = new ArrayList<>();
+        cursos.add(new Curso());
+        cursos.add(new Curso());
+
+        Mockito.when(cursoRepository.findByDeletedFalse()).thenReturn(cursos);
+
+        List<Curso> response = cursoService.listar("   ");
+
+        Assertions.assertEquals(2, response.size());
+    }
+
+    @Test
     public void test_shouldCreateCursoWhenNomeIsValid() {
         Curso curso = new Curso();
         curso.setNome("Spring Boot");
