@@ -47,7 +47,7 @@ jobs:
           script: |
             docker stop simulado
             docker rm --force simulado
-            docker run  -d -p 8080:8080 --name simulado -e DB_HOST=postgres-aula larinhazzz/simulado-ci:${{ github.sha }}
+            docker run  -d -p 8080:8080 --name simulado -e DB_HOST=postgres-aula --network=rede larinhazzz/simulado-ci:${{ github.sha }}
 
 
 
